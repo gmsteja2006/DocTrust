@@ -31,7 +31,7 @@ async def lifespan(app: FastAPI):
     pipeline.retrieval_service.close()
 
 
-app = FastAPI(title="DocuTrust API", version="1.0.0", lifespan=lifespan)
+app = FastAPI(title="DocTrust API", version="1.0.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -48,7 +48,7 @@ app.include_router(settings_router)
 
 @app.get("/")
 async def root() -> dict[str, str]:
-    return {"message": "DocuTrust API is running"}
+    return {"message": "DocTrust API is running"}
 
 
 @app.get("/health")

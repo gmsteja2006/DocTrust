@@ -1,6 +1,6 @@
-# DocuTrust — Frontend
+# DocTrust — Frontend
 
-Frontend for **DocuTrust**, an AI-powered document intelligence system that lets users upload documents (PDF, DOCX, TXT) and ask natural-language questions about their content. Built with React 19, TypeScript, and Tailwind CSS v4.
+Frontend for **DocTrust**, an AI-powered document intelligence system that lets users upload documents (PDF, DOCX, TXT) and ask natural-language questions about their content. Built with React 19, TypeScript, and Tailwind CSS v4.
 
 ## Tech Stack
 

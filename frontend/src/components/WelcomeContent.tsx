@@ -79,7 +79,7 @@ export function WelcomeContent({
           <h2 className={`text-2xl font-extrabold tracking-tight sm:text-3xl ${headingColor}`}>
             Welcome to{" "}
             <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
-              DocuTrust
+              DocTrust
             </span>
           </h2>
           <p className={`mt-2 max-w-md text-sm ${subText}`}>

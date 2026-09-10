@@ -1,4 +1,4 @@
-# DocuTrust — Document Intelligence System
+# DocTrust — Document Intelligence System
 
 An AI-powered Retrieval-Augmented Generation (RAG) system that lets you upload documents and ask natural-language questions about their content. Combines semantic search, keyword search, and LLM generation to deliver grounded, accurate answers.
 
