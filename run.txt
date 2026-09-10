@@ -1,0 +1,118 @@
+
+# ╔══════════════════════════════════════════════════════════════════════════╗
+# ║           Document Intelligence System — Run Commands                   ║
+# ╚══════════════════════════════════════════════════════════════════════════╝
+#
+#  Open THREE separate PowerShell terminals and run one section in each.
+# ──────────────────────────────────────────────────────────────────────────
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  QUICK START (copy & paste these 3 commands into 3 terminals)
+# ══════════════════════════════════════════════════════════════════════
+
+# Terminal 1 — Ollama (Local Mode only, skip if using API Mode / Groq)
+ollama run llama3.1:8b
+
+# Terminal 2 — Backend (FastAPI)
+cd "C:\Users\Teja\OneDrive\Desktop\Document-Intelligence-System-main\backend" ; python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+
+# Terminal 3 — Frontend (React + Vite)
+cd "C:\Users\Teja\OneDrive\Desktop\Document-Intelligence-System-main\frontend" ; npm run dev
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  URLS (after running the commands above)
+# ══════════════════════════════════════════════════════════════════════
+
+#  Web App  →  http://localhost:5173
+#  API Docs →  http://127.0.0.1:8000/docs
+#  Backend  →  http://127.0.0.1:8000
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  SWITCHING MODES  (Local Mode ↔ API Mode)
+# ══════════════════════════════════════════════════════════════════════
+
+#  ✅ EASIEST WAY — Use the toggle button in the top-right of the web app!
+#     Click the segmented control that shows [ Local | API ] to switch instantly.
+#     No restart needed. The active model name is shown next to the button.
+
+#  ─── Option B — Edit the .env file, then restart the backend ───────────────
+#  File: backend\.env
+#
+#  For LOCAL MODE (Ollama, runs on your machine, no internet needed):
+#    LLM_PROVIDER=ollama
+#
+#  For API MODE (Groq Cloud, fast, needs internet + Groq API key):
+#    LLM_PROVIDER=groq
+
+#  ─── Option C — Switch via Python (no restart, no UI) ────────────────────
+#  Switch to LOCAL MODE (Ollama):
+python -c "import httpx; r=httpx.post('http://127.0.0.1:8000/settings/provider',json={'provider':'ollama'}); print(r.json())"
+
+#  Switch to API MODE (Groq):
+python -c "import httpx; r=httpx.post('http://127.0.0.1:8000/settings/provider',json={'provider':'groq'}); print(r.json())"
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  TERMINAL 1 — OLLAMA (Local Mode only)
+# ══════════════════════════════════════════════════════════════════════
+
+# Check what models you have:
+ollama list
+
+# Download + start llama3.1:8b (first run downloads ~5 GB):
+ollama run llama3.1:8b
+
+# Alternative: mistral:7b (~4 GB):
+ollama run mistral:7b
+
+# If ollama isn't found, use the full path:
+& "$env:LOCALAPPDATA\Programs\Ollama\ollama.exe" run llama3.1:8b
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  TERMINAL 2 — BACKEND (FastAPI)
+# ══════════════════════════════════════════════════════════════════════
+
+cd "C:\Users\Teja\OneDrive\Desktop\Document-Intelligence-System-main\backend"
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  TERMINAL 3 — FRONTEND (React + Vite)
+# ══════════════════════════════════════════════════════════════════════
+
+cd "C:\Users\Teja\OneDrive\Desktop\Document-Intelligence-System-main\frontend"
+npm run dev
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  ONE-TIME SETUP (run these once if you haven't already)
+# ══════════════════════════════════════════════════════════════════════
+
+# Install Python dependencies:
+cd "C:\Users\Teja\OneDrive\Desktop\Document-Intelligence-System-main\backend"
+pip install -r requirements.txt
+
+# Set up the database:
+python setup_db.py
+
+# Install frontend dependencies:
+cd "C:\Users\Teja\OneDrive\Desktop\Document-Intelligence-System-main\frontend"
+npm install
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  HEALTH CHECKS (verify everything is running)
+# ══════════════════════════════════════════════════════════════════════
+
+# Is the backend running?
+python -c "import httpx; print(httpx.get('http://127.0.0.1:8000/health').json())"
+
+# What mode is active right now? (Local or API)
+python -c "import httpx; print(httpx.get('http://127.0.0.1:8000/settings').json())"
+
+# Is Ollama running?
+python -c "import httpx; print(httpx.get('http://localhost:11434/api/tags').json())"
