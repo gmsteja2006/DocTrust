@@ -6,7 +6,7 @@ An AI-powered Retrieval-Augmented Generation (RAG) system that lets you upload d
 
 > 🎥 **Demo video** — A walkthrough of the full upload → query → answer workflow.
 
-https://github.com/user-attachments/assets/d77b63eb-e38b-4f0c-a920-d5667f1dfeab
+https://github.com/gmsteja2006/DocTrust/raw/master/assets/demo.mp4
 
 ## Features
 
